@@ -52,7 +52,7 @@ PG_LOG=true
 
 2. Model
 ```javascript
-const Model = require('@schirrel/pg-connection/Model');
+const Model = require('@schirrel/simple-connection/postgres/Model');
 class User extends Model{
 	constructor(args = {}){
 	super("USER");
@@ -69,7 +69,7 @@ module.exports = User;
 
 3. Repository
 ```javascript
-const Repository = require('@schirrel/pg-connection/Repository');
+const Repository = require('@schirrel/simple-connection/postgres/Repository');
 const User = require('../models/User');
 
 class UserRepository extends Repository{
