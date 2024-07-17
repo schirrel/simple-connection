@@ -1,7 +1,5 @@
 # simple-connection
 Simple PostgreSQL and MySQL query builder/ORM-ish lib for using databases with nodejs
-WIP
-
 
 ## Install
 ``npm install @schirrel/simple-connection --save``
