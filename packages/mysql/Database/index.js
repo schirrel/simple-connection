@@ -1,10 +1,8 @@
 module.exports = (() => {
     const config = require('./Config');
-    const mysql = require('mysql');
+    const mysql = require('mysql2');
 
-    const connection = mysql.createConnection(config.options);
-
-    const pool = mysql.createPool(config.options);
+    let pool;
     const getConnection = () => {
         return new Promise((resolve, reject) => {
             pool.getConnection(function (err, successfulConnection) {
@@ -29,19 +27,21 @@ module.exports = (() => {
 
 
 
-    const connect = async () => {
-        return new Promise((resolve) => {
-
-            connection.connect(function (err) {
-                if (err) {
-                    console.error('error connecting: ' + err.stack);
-                    return;
-                }
-
+    const connect = async (stream) => {
+        if (stream) {
+            config.options.stream = stream;
+        }
+        pool = mysql.createPool(config.options)
+        return new Promise(async (resolve, reject) => {
+            try {
+                const connection = await getConnection();
                 console.log('connected as id ' + connection.threadId);
                 connection.query('SELECT 1');
                 resolve(connection);
-            });
+            } catch (err) {
+                console.error('error connecting: ' + err.stack);
+                reject(err);
+            }
 
         })
     };
