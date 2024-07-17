@@ -1,0 +1,29 @@
+{
+    "name": "@schirrel/simple-connection",
+    "version": "1.0.0",
+    "description": "Simple PostgreSQL and MySQL query builder/ORM-ish lib for using databases with nodejs",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/schirrel/simple-connection.git"
+    },
+    "keywords": [
+        "pg",
+        "nodejs",
+        "postgres"
+    ],
+    "author": "schirrel",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/schirrel/simple-connection/issues"
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "pg": "^7.4.2",
+        "mysql": "^2.18.1"
+    },
+    "homepage": "https://github.com/schirrel/simple-connection#readme",
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/"
+    }
+}
