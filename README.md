@@ -34,13 +34,11 @@ Uses `.env`  to acquire credentials.
 | CON_LIMIT| Optional |10 | |
 
 
-## Usage
+## Example
 
 Using in 3 Steps
 
 1. .env
-
-
 ```
 PG_USER=postgres
 PG_URL=localhost
@@ -55,7 +53,9 @@ PG_LOG=true
 const Model = require('@schirrel/simple-connection/postgres/Model');
 class User extends Model{
 	constructor(args = {}){
-	super("USER");
+	super("USER", {
+		'primaryKey' : 'ID'
+	});
 	this.addColumn('email', 'EMAIL');
 	this.addColumn('name', 'NAME');
 	this.addColumn('password', 'PASSWORD');
@@ -79,6 +79,26 @@ class UserRepository extends Repository{
 }
 
 module.exports = UserRepository;
+```
+
+4. Your main file
+```javascript
+
+
+const Database = require("@schirrel/simple-connection/mysql/Database");
+await Database.connect();
+const userRepository = new UserRepository();
+
+const user = await userRepository.get(123);
+
+const newUser = new User({
+	email: 'abc@email.com',
+	name: 'someone',
+	password: '1234123'
+});
+
+await userRepository.create(newUser);
+
 ```
 
 And thats it.
